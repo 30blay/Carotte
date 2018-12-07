@@ -36,7 +36,7 @@ class Seller(models.Model):
         self.latitude = location.latitude
         self.longitude = location.longitude
 
-    def distance_to(self, latitude, longitude):
+    def get_distance(self, latitude, longitude):
         return distance.distance((self.latitude, self.longitude), (latitude, longitude)).km
 
 
