@@ -1,6 +1,4 @@
-Projet Carotte
-
-==============
+# Projet Carotte
 
 Permettre aux gens de trouver des produits sans emballage
 
@@ -8,30 +6,28 @@ Récolter des données sur les utilisateurs
 
 Conquérir le monde
 
-Install
-=======
+## Install
 
 Install dependencies:
 
-.. code-block:: bash
-
+```bash
     pip install -r requirements.txt
+```
 
 Initialize database tables:
 
-.. code-block:: bash
-
-    python manage.py migrate
+```bash
+$ python python manage.py migrate
+```
 
 Create a super-user for the admin:
 
-.. code-block:: bash
+```bash
+$ python manage.py createsuperuser
+```
 
-    python manage.py createsuperuser
+## Run
 
-Run
-===
-
-.. code-block:: bash
-
-    python manage.py runserver
+```bash
+$ python manage.py runserver
+```
