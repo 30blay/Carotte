@@ -49,3 +49,7 @@ class Product(models.Model):
     def __str__(self):
         return self.type.name + " at " + self.seller.brand
 
+    class Meta:
+        # unique constraint : only one potato at a certain seller
+        unique_together = (("type", "seller"),)
+
