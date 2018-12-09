@@ -12,8 +12,8 @@
           {% render_field filter.form.type__name class="form-control" %}
         </div>
         <div class="form-group col-sm-4 col-md-3">
-          {{ filter.form.seller__brand.label_tag }}
-          {% render_field filter.form.seller__brand class="form-control" %}
+          {{ filter.form.organic.label_tag }}
+          {% render_field filter.form.organic class="form-control" %}
         </div>
       </div>
       <button type="submit" class="btn btn-primary">
@@ -27,6 +27,7 @@
       <tr>
         <th>Name</th>
         <th>Seller</th>
+        <th>Organic</th>
       </tr>
     </thead>
     <tbody>
@@ -34,10 +35,11 @@
         <tr>
           <td>{{ product.type.name }}</td>
           <td>{{ product.seller.brand }}</td>
+          <td>{{ product.organic}}</td>
         </tr>
       {% empty %}
         <tr>
-          <td colspan="2">No data</td>
+          <td colspan="3">No data</td>
         </tr>
       {% endfor %}
     </tbody>

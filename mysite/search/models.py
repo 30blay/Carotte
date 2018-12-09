@@ -17,11 +17,11 @@ class Specie(models.Model):
 class Seller(models.Model):
     brand = models.CharField(max_length=30)
     address = models.CharField(max_length=200, default="1704 rue Crawford, Verdun")
-    latitude = models.DecimalField(max_digits=18, decimal_places=10, null=True)
-    longitude = models.DecimalField(max_digits=18, decimal_places=10, null=True)
+    latitude = models.DecimalField(max_digits=18, decimal_places=10, default=0)
+    longitude = models.DecimalField(max_digits=18, decimal_places=10, default=0)
 
     def __str__(self):
-        return self.brand
+        return self.brand + ' at ' + self.address
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
@@ -43,8 +43,8 @@ class Seller(models.Model):
 class Product(models.Model):
     type = models.ForeignKey(Specie, on_delete=models.CASCADE, null=False)
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE, null=False)
-    #organic = models.BooleanField(default=False)
-    #numSold = models.IntegerField(default=0)
+    organic = models.BooleanField(default=False)
+    numSold = models.IntegerField(default=0)
 
     def __str__(self):
         return self.type.name + " at " + self.seller.brand
