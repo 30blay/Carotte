@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
 
     'mysite.search',
-    
-    'leaflet',
 ]
 
 MIDDLEWARE = [
@@ -72,9 +70,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'mysite.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases

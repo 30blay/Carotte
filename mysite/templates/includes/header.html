@@ -15,6 +15,11 @@
           <a href="{% url 'search' %}">Search</a>
         </li>
       </ul>
+      <ul class="nav navbar-nav">
+        <li{% if '/maxdist/' in request.path %} class="active"{% endif %}>
+          <a href="{% url 'maxdist' %}">Map</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

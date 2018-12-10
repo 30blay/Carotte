@@ -1,0 +1,9 @@
+{% if closest_products_list %}
+    <ul>
+    {% for product in closest_products_list %}
+        <li><a>{{ product.type.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No products are available.</p>
+{% endif %}

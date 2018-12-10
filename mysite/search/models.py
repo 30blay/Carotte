@@ -3,7 +3,6 @@ from geopy.geocoders import Nominatim
 from geopy import distance
 
 
-
 from django.db import models
 
 

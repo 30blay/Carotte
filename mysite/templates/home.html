@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
 
-{% load leaflet_tags %}
-
-<head>
-    ...
-    {% leaflet_js %}
-    {% leaflet_css %}
-</head>
-
 {% block content %}
   <h1 class="page-header">Home of the Carotte Project</h1>
-  <p class="lead">Click on the <a href="{% url 'search' %}">Search</a> menu to explore the example.</p>
+  <p class="lead">Click on the <a href="{% url 'search' %}">Search</a> menu to explore products.</p>
+  <p class="lead">Click on the <a href="{% url 'maxdist' %}">Map</a> menu to explore the map.</p>
 {% endblock %}
