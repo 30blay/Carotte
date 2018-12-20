@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 {% if closest_products_list %}
     <ul>
     {% for product in closest_products_list %}
@@ -7,3 +10,4 @@
 {% else %}
     <p>No products are available.</p>
 {% endif %}
+{% endblock %}
