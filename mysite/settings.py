@@ -87,7 +87,9 @@ LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (45.5008, -73.6029),
     'DEFAULT_ZOOM': 12,
     'MIN_ZOOM': 3,
-    'MAX_ZOOM': 18,}
+    'MAX_ZOOM': 18,
+    'RESET_VIEW': False
+}
 
 
 # Internationalization
