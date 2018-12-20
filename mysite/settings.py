@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
 
+    'leaflet',
+
     'mysite.search',
 ]
 

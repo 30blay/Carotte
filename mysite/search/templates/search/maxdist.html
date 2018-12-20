@@ -1,4 +1,13 @@
-{% extends 'base.html' %}
+
+{% load leaflet_tags %}
+
+<head>
+    {% leaflet_js %}
+    {% leaflet_css %}
+</head>
+<body>
+{% leaflet_map "main" %}
+</body>
 
 {% block content %}
 {% if closest_products_list %}
