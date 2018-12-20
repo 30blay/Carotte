@@ -1,15 +1,17 @@
+{% extends 'base.html' %}
 
 {% load leaflet_tags %}
 
-<head>
-    {% leaflet_js %}
-    {% leaflet_css %}
-</head>
-<body>
-{% leaflet_map "main" %}
-</body>
-
 {% block content %}
+    <head>
+        {% leaflet_js %}
+        {% leaflet_css %}
+    </head>
+
+    <body>
+        {% leaflet_map "main" %}
+    </body>
+
 {% if closest_products_list %}
     <ul>
     {% for product in closest_products_list %}
