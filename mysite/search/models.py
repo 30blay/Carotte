@@ -16,15 +16,19 @@ class Specie(models.Model):
 
 class Seller(models.Model):
     brand = models.CharField(max_length=30)
-    address = models.CharField(max_length=200, default="1704 rue Crawford, Verdun")
+    address = models.CharField(max_length=200, null=True)
     geom = PointField(null=True)
+
+    class Meta:
+        unique_together = (("brand", "geom"),)
 
     def __str__(self):
         return self.brand + ' at ' + self.address
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        self.geocode()
+        if self.address:
+            self.geocode()
         super(Seller, self).save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
     def geocode(self):
