@@ -23,7 +23,7 @@ class Seller(models.Model):
         unique_together = (("brand", "geom"),)
 
     def __str__(self):
-        return self.brand + ' at ' + self.address
+        return self.brand
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):

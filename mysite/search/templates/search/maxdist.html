@@ -1,25 +1,53 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% load leaflet_tags %}
+{% load widget_tweaks %}
 
 {% block content %}
+  <form method="get">
+    <div class="well">
+      <h4 style="margin-top: 0">Filter</h4>
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.type__name.label_tag }}
+          {% render_field filter.form.type__name class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.organic.label_tag }}
+          {% render_field filter.form.organic class="form-control" %}
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+    </div>
+  </form>
+
     <head>
         {% leaflet_js %}
         {% leaflet_css %}
-        <script src="../../static/js/sellers.js"></script>
+        <script>
+
+            window.addEventListener("map:init", function(event){
+                var map = event.detail.map;
+
+                // use context variable instead of making AJAX call
+                var map_products =  JSON.parse('{{ map_products }}');
+                for(i in map_products) {
+                    var title = map_products[i].name,
+                        loc = map_products[i].loc,
+                        seller = map_products[i].seller,
+                        marker = new L.Marker(new L.latLng(loc), {title: title} );
+                        marker.bindPopup("<b>" + title + "</b><br>" + seller);
+
+                    map.addLayer(marker);
+                }
+            });
+        </script>
     </head>
 
     <body>
         {% leaflet_map "main" %}
     </body>
-
-{% if closest_products_list %}
-    <ul>
-    {% for product in closest_products_list %}
-        <li><a>{{ product.type.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No products are available.</p>
-{% endif %}
 {% endblock %}
