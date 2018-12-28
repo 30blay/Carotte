@@ -15,5 +15,16 @@ class Command(BaseCommand):
             name = shop.tags['name']
             latitude = shop.lat
             longitude = shop.lon
+
+            sellers = Seller.objects.all()
+            duplicateExists = False
+            for possibleDuplicate in sellers:
+                distance = possibleDuplicate.get_distance(latitude, longitude)
+                if possibleDuplicate.brand == name and distance < 0.2:
+                    duplicateExists = True
+
+            if duplicateExists:
+                continue
             seller = Seller(brand=name, geom={'type': 'Point', 'coordinates': [latitude, longitude]})
+            print('Added ' + name)
             seller.save()
