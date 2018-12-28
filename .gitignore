@@ -65,3 +65,5 @@ target/
 .env
 *.sqlite3
 venv/
+
+staticfiles/

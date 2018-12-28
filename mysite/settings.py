@@ -88,7 +88,7 @@ LEAFLET_CONFIG = {
     'DEFAULT_ZOOM': 12,
     'MIN_ZOOM': 3,
     'MAX_ZOOM': 18,
-    'RESET_VIEW': False
+    'RESET_VIEW': True
 }
 
 
@@ -114,3 +114,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'mysite/static'),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
