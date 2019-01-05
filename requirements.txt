@@ -5,3 +5,5 @@ geographiclib==1.49
 geopy==1.18.0
 django-leaflet==0.24.0
 django-geojson [field]
+gunicorn
+whitenoise
