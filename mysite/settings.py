@@ -40,7 +40,11 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
 
+    'leaflet',
+
     'mysite.search',
+
+    'djgeojson',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +85,14 @@ DATABASES = {
     }
 }
 
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (45.5008, -73.6029),
+    'DEFAULT_ZOOM': 12,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 18,
+    'RESET_VIEW': True
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -104,3 +116,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'mysite/static'),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

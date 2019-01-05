@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from geopy.geocoders import Nominatim
 from geopy import distance
+from djgeojson.fields import PointField
 
 
 from django.db import models
@@ -15,28 +16,28 @@ class Specie(models.Model):
 
 class Seller(models.Model):
     brand = models.CharField(max_length=30)
-    address = models.CharField(max_length=200, default="1704 rue Crawford, Verdun")
-    latitude = models.DecimalField(max_digits=18, decimal_places=10, default=0)
-    longitude = models.DecimalField(max_digits=18, decimal_places=10, default=0)
+    address = models.CharField(max_length=200, null=True)
+    geom = PointField(null=True)
+
+    class Meta:
+        unique_together = (("brand", "geom"),)
 
     def __str__(self):
-        return self.brand + ' at ' + self.address
+        return self.brand
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        if not self.latitude or not self.longitude:
+        if self.address:
             self.geocode()
-
         super(Seller, self).save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
     def geocode(self):
         geolocator = Nominatim()
         location = geolocator.geocode(self.address)
-        self.latitude = location.latitude
-        self.longitude = location.longitude
+        self.geom = {'type': 'Point', 'coordinates': [location.latitude, location.longitude]}
 
     def get_distance(self, latitude, longitude):
-        return distance.distance((self.latitude, self.longitude), (latitude, longitude)).km
+        return distance.distance(self.geom['coordinates'], (latitude, longitude)).km
 
 
 class Product(models.Model):
