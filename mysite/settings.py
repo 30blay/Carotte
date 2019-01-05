@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'leaflet',
 
     'mysite.search',
+
+    'djgeojson',
 ]
 
 MIDDLEWARE = [
